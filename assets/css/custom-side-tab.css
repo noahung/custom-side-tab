@@ -1,6 +1,5 @@
 #custom-side-tab {
     position: fixed;
-    right: 0;
     top: 50%;
     transform: translateY(-50%);
     z-index: 9999;
@@ -9,8 +8,21 @@
     width: fit-content;
 }
 
-#custom-side-tab.collapsed {
+#custom-side-tab.right {
+    right: 0;
+}
+
+#custom-side-tab.left {
+    left: 0;
+    flex-direction: row-reverse;
+}
+
+#custom-side-tab.right.collapsed {
     transform: translateY(-50%) translateX(calc(100% - 40px));
+}
+
+#custom-side-tab.left.collapsed {
+    transform: translateY(-50%) translateX(calc(-100% + 40px));
 }
 
 .side-tab-toggle {
@@ -35,8 +47,20 @@
     line-height: 1;
 }
 
-#custom-side-tab.collapsed .toggle-icon {
+#custom-side-tab.right .toggle-icon {
+    transform: rotate(0deg);
+}
+
+#custom-side-tab.right.collapsed .toggle-icon {
     transform: rotate(180deg);
+}
+
+#custom-side-tab.left .toggle-icon {
+    transform: rotate(180deg);
+}
+
+#custom-side-tab.left.collapsed .toggle-icon {
+    transform: rotate(0deg);
 }
 
 .side-tab-items {
@@ -55,21 +79,16 @@
     color: inherit;
     transition: background-color 0.3s ease;
     position: relative;
+    background: inherit;
+}
+
+.side-tab-item:not(:last-child) {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 2px;
 }
 
 .side-tab-item:hover {
     background-color: var(--hover-color);
-}
-
-.side-tab-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .side-tab-item img {

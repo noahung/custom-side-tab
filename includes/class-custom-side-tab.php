@@ -31,12 +31,19 @@ class Custom_Side_Tab {
             true
         );
 
+        $settings = get_option('cst_settings', array(
+            'background_color' => '#f39c12',
+            'text_color' => '#ffffff',
+            'hover_color' => '#e67e22'
+        ));
+
         // Pass settings to JavaScript
         wp_localize_script(
             'custom-side-tab',
             'cstSettings',
             array(
-                'items' => $this->get_tab_items()
+                'items' => $this->get_tab_items(),
+                'hover_color' => $settings['hover_color']
             )
         );
     }
@@ -72,7 +79,8 @@ class Custom_Side_Tab {
             'background_color' => '#f39c12',
             'text_color' => '#ffffff',
             'hover_color' => '#e67e22',
-            'enabled' => 1
+            'enabled' => 1,
+            'position' => 'right'
         ));
 
         // Don't render if disabled
@@ -88,8 +96,9 @@ class Custom_Side_Tab {
             esc_attr($settings['text_color'])
         );
 
+        $position = esc_attr($settings['position']);
         ?>
-        <div id="custom-side-tab" class="collapsed" style="<?php echo $style; ?>">
+        <div id="custom-side-tab" class="collapsed <?php echo $position; ?>" style="<?php echo $style; ?>">
             <button id="side-tab-toggle" class="side-tab-toggle">
                 <span class="toggle-icon">›</span>
             </button>

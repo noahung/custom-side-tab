@@ -71,7 +71,8 @@ function custom_side_tab_activate() {
             'background_color' => '#f39c12',
             'text_color' => '#ffffff',
             'hover_color' => '#e67e22',
-            'enabled' => 1
+            'enabled' => 1,
+            'position' => 'right'
         );
         add_option('cst_settings', $default_settings);
     }

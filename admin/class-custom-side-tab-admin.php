@@ -123,6 +123,7 @@ class Custom_Side_Tab_Admin {
         $new_input['text_color'] = sanitize_hex_color($input['text_color']);
         $new_input['hover_color'] = sanitize_hex_color($input['hover_color']);
         $new_input['enabled'] = isset($input['enabled']) ? 1 : 0;
+        $new_input['position'] = in_array($input['position'], array('left', 'right')) ? $input['position'] : 'right';
         
         return $new_input;
     }
@@ -174,7 +175,8 @@ class Custom_Side_Tab_Admin {
             'background_color' => '#f39c12',
             'text_color' => '#ffffff',
             'hover_color' => '#e67e22',
-            'enabled' => 1
+            'enabled' => 1,
+            'position' => 'right'
         ));
         ?>
         <p>
@@ -183,6 +185,13 @@ class Custom_Side_Tab_Admin {
                        value="1" <?php checked($settings['enabled'], 1); ?> />
                 Enable Side Tab
             </label>
+        </p>
+        <p>
+            <label>Position:</label><br>
+            <select name="cst_settings[position]">
+                <option value="left" <?php selected($settings['position'], 'left'); ?>>Left Side</option>
+                <option value="right" <?php selected($settings['position'], 'right'); ?>>Right Side</option>
+            </select>
         </p>
         <p>
             <label>Background Color:</label><br>
